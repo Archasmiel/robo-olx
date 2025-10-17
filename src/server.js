@@ -6,16 +6,17 @@ dotenv.config();
 const PORT = process.env.PORT || 3001;
 const app = express();
 
-app.use(express.json());
+app.use(express.static("static"));
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 
 let products = [
-    { title: "Skuks", desc: "Explosive" },
-    { title: "Smegma", desc: "Death" },
-    { title: "Shosh", desc: "???" },
+    { title: "Skuks", description: "Explosive" },
+    { title: "Smegma", description: "Death" },
+    { title: "Shosh", description: "???" },
 ];
 
 app.get('/', (req, res) => {
@@ -24,9 +25,7 @@ app.get('/', (req, res) => {
 
 app.post('/add-product', (req, res) => {
     const { title, description } = req.body;
-    if (title) {
-        products.push({ title, description });
-    }
+    products.push({ title: title, description: description });
     res.redirect('/');
 });
 
