@@ -44,6 +44,11 @@ header {
     text-shadow: 4px 4px black;
 }
 
+header a {
+    color: white;
+    text-decoration: none;
+}
+
 main {
     flex-grow: 1;
 }
@@ -61,6 +66,15 @@ main {
     color: white;
     padding: 1rem;
     border-radius: 1rem;
+    text-decoration: none;
+}
+
+.ad img {
+    width: 100%;
+    border-radius: 1rem;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    object-position: center;
 }
 
 
@@ -104,7 +118,11 @@ form textarea {
     border-radius: 1rem;
 }
 
-.add-button {
+#image {
+    display: none;
+}
+
+.add-button, .image-label {
     background-color: var(--primary-100);
     color: white;
     border: none;
@@ -116,6 +134,10 @@ form textarea {
     font-size: 1.5rem;
     margin-top: 1rem;
     box-shadow: 0 0 0.5rem black;
+}
+
+.image-label {
+    font-size: 1rem;
 }
 
 .close {
@@ -157,6 +179,30 @@ footer {
     color: white;
     text-align: center;
     padding: 0.3rem;
+}
+
+.post {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+
+.imgs {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.imgs img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 1rem;
+    box-shadow: 0 0 0.5rem black;
 }
 
 .notFound {
