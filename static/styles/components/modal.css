@@ -1,0 +1,72 @@
+@font-face {
+  font-family: myfont;
+  src: url(../assets/PressStart2P-Regular.ttf);
+}
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding-top: 60px;
+}
+.modal .content {
+  background: linear-gradient(to right, #2563eb, #598ef3);
+  color: white;
+  border-radius: 1rem;
+  background-size: cover;
+  margin: auto;
+  width: fit-content;
+  padding: 1rem;
+  position: relative;
+}
+.modal .content form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  min-width: 300px;
+  margin: 0 auto;
+}
+.modal .content form input, .modal .content form textarea {
+  padding: 0.3rem 1rem;
+  border: none;
+  border-radius: 3rem;
+}
+.modal .content form .add-button, .modal .content form .image-label {
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-family: myfont, monospace;
+  text-shadow: 2px 2px black;
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  box-shadow: 0 0 0.5rem black;
+}
+.modal .content form #image {
+  display: none;
+}
+.modal .content form .image-label {
+  font-size: 1rem;
+}
+.modal .content .close {
+  position: absolute;
+  right: 1.5rem;
+  top: 1rem;
+  color: white;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: myfont, monospace;
+  color: white;
+  text-shadow: 4px 4px black;
+  font-size: 1.5rem;
+}
+
+/*# sourceMappingURL=modal.css.map */

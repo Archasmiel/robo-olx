@@ -1,0 +1,22 @@
+.post {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.post .imgs {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+}
+.post .imgs img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 1rem;
+  box-shadow: 0 0 0.5rem black;
+}
+
+/*# sourceMappingURL=post.css.map */
