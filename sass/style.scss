@@ -1,92 +1,101 @@
-@use "./base/colors.scss" as *;
-@use "./base/typography.scss" as *;
-@use "./base/clearDefault.scss" as *;
-@use "./post.scss" as *;
-@use "./components/modal.scss" as *;
+@use "./base/functions" as f;
+@import "./base/colors";
+@import "./base/typography";
+@import "./base/clearDefault";
+@import "./components/post";
+@import "./components/modal";
+
+@debug f.calculateSpacing(10, 10);
+@debug f.pow(2, 3);
+@debug f.randomColor();
 
 body {
-    background-color: $bg-100;
-    font-family: $font;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+  background-color: $bg-100;
+  font-family: $font;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 header {
-    font-family: $titleFont;
-    font-size: 1rem;
+  font-family: $titleFont;
+  font-size: 1rem;
+  color: white;
+  background: linear-gradient(to bottom, $primary-100, $primary-200);
+  padding: 1rem;
+  text-shadow: 4px 4px black;
+
+  & a {
     color: white;
-    background: linear-gradient(to bottom, $primary-100, $primary-200);
-    padding: 1rem;
-    text-shadow: 4px 4px black;
-    & a {
-        color: white;
-        text-decoration: none;
-    }
+    text-decoration: none;
+  }
 }
 
 main {
-    flex-grow: 1;
-    & .wrapper {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 1rem;
-        padding: 1rem;
-        & .ad {
-            background: linear-gradient(to right, $primary-100, $primary-200);
-            box-shadow: 0 0 0.5rem black;
-            color: white;
-            padding: 1rem;
-            border-radius: 1rem;
-            text-decoration: none;
-            & img {
-                width: 100%;
-                border-radius: 1rem;
-                aspect-ratio: 1/1;
-                object-fit: cover;
-                object-position: center;
-            }
+  flex-grow: 1;
 
-            & p {
-                overflow: hidden;
-                text-overflow: ellipsis;
-                height: 1.5rem;
-            }
-        }
+  & .wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+
+    & .ad {
+      background: linear-gradient(to right, $primary-100, $primary-200);
+      box-shadow: 0 0 0.5rem black;
+      color: white;
+      padding: 1rem;
+      border-radius: 1rem;
+      text-decoration: none;
+
+      & img {
+        width: 100%;
+        border-radius: 1rem;
+        aspect-ratio: 1/1;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      & p {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        height: 1.5rem;
+      }
     }
+  }
 }
 
 #add {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: linear-gradient(to right, $primary-100, $primary-200);
-    color: white;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    font-family: $titleFont;
-    text-shadow: 4px 4px black;
-    font-size: 1.5rem;
-    box-shadow: 0 0 0.5rem black;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: linear-gradient(to right, $primary-100, $primary-200);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-family: $titleFont;
+  text-shadow: 4px 4px black;
+  font-size: 1.5rem;
+  box-shadow: 0 0 0.5rem black;
 }
 
 footer {
-    background: linear-gradient(to bottom, $primary-100, $primary-200);
-    color: white;
-    text-align: center;
-    padding: 0.3rem;
+  background: linear-gradient(to bottom, $primary-100, $primary-200);
+  color: white;
+  text-align: center;
+  padding: 0.3rem;
 }
 
 .notFound {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    flex-grow: 1;
-    color: white;
-    font-size: 2rem;
-    font-family: $titleFont;
-    text-shadow: 4px 4px black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  color: white;
+  font-size: 2rem;
+  font-family: $titleFont;
+  text-shadow: 4px 4px black;
 }
