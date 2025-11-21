@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "sass": "sass --watch sass:static/styles",
+    "sass": "sass sass:static/styles --quiet-deps --watch",
     "server": "node app.js",
     "dev": "concurrently \"npm run sass\" \"npm run server\""
   },
@@ -26,6 +26,7 @@
     "ejs": "^3.1.10",
     "express": "^5.1.0",
     "multer": "^2.0.2",
+    "mysql2": "^3.15.3",
     "sass": "^1.93.3"
   }
 }

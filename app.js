@@ -1,10 +1,10 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import process from 'process';
 import multer from 'multer';
 import path from 'path';
 import url from 'url';
 import fs from 'fs';
+import db from './db.js';
 
 // Підготовка та створення
 dotenv.config();
@@ -23,7 +23,7 @@ const app = express();
 // Middleware
 app.use(express.static('static'));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
 // View Engine
@@ -35,37 +35,37 @@ const storage = multer.diskStorage({
     destination: (req, file, cb) => cb(null, 'uploads/'),
     filename: (req, file, cb) => cb(null, `${Date.now()}-${file.originalname}`)
 });
-const upload = multer({ storage });
-
-// Збереження даних (тестово)
-let products = [];
+const upload = multer({storage});
 
 // Routes
-app.get('/', (req, res, next) => {
-    // solely for testing
-    console.log(products.length);
-    next();
-}, (req, res) => {
-    res.render('index', { products });
+app.get('/', (req, res) => {
+    db.query("SELECT * FROM products", (err, result) => {
+        let products = result;
+        products.forEach((product) => {
+            product.image = JSON.parse(product.image);
+        });
+        res.render('index', {products});
+    });
 });
 
-app.post('/add', upload.fields([{ name: 'image' }]), (req, res) => {
+app.post('/add', upload.fields([{name: 'image'}]), (req, res) => {
     const data = req.body;
     data.image = req.files.image.map(file => file.filename);
-    data.id = products.length;
-    products.push(data);
-    res.redirect('/');
+    data.image = JSON.stringify(data.image);
+    db.query("INSERT INTO products SET ?", data, (err) => {
+        res.status(201);
+        res.end();
+    });
 });
 
-app.get('/post/:id', (req, res, next) => {
+app.get('/post/:id', (req, res) => {
     const postId = req.params.id;
-    if (products[postId]) console.log(products[postId]);
-    next();
-}, (req, res) => {
-    const postId = req.params.id;
-    const product = products[postId];
-    if (!product) return res.status(404).render('notfound');
-    res.render('post', { product });
+    db.query("SELECT * FROM products WHERE id = ?", postId, (err, result) => {
+        if (err || result.length === 0) return res.status(404).render('notfound');
+        let product = result[0];
+        product.image = JSON.parse(product.image);
+        res.render('post', {product});
+    });
 });
 
 // 404 Handler
