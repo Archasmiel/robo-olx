@@ -60,11 +60,36 @@ app.post('/add', upload.fields([{name: 'image'}]), (req, res) => {
 
 app.get('/post/:id', (req, res) => {
     const postId = req.params.id;
-    db.query("SELECT * FROM products WHERE id = ?", postId, (err, result) => {
+    db.query(
+    `SELECT p.*, c.id AS commentId, c.author, c.comment
+    FROM products p
+    LEFT JOIN comments c ON c.post_id = p.id
+    WHERE p.id = ?`,
+    postId,
+    (err, result) => {
         if (err || result.length === 0) return res.status(404).render('notfound');
-        let product = result[0];
-        product.image = JSON.parse(product.image);
+        let product = {
+            id: result[0].id,
+            title: result[0].title,
+            description: result[0].description,
+            image: JSON.parse(result[0].image),
+            comments: result.map((row) => {
+                return {
+                    id: row.commentId,
+                    author: row.author,
+                    comment: row.comment,
+                };
+            }),
+        };
         res.render('post', {product});
+    });
+});
+
+app.post('/comment', (req, res) => {
+    let data = req.body;
+    db.query("INSERT INTO comments SET ?", data, (err) => {
+        res.status(201);
+        res.end();
     });
 });
 

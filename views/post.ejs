@@ -12,5 +12,7 @@
                     <img src="/uploads/<%= image %>" alt="Зображення" />
                     <% }); -%>
             </div>
+            <%- include('post/postform.ejs') -%>
+            <%- include('post/commentlist.ejs', {comments: product.comments}) -%>
         </main>
         <%- include('footer.ejs') -%>
