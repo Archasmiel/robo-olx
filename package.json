@@ -7,7 +7,8 @@
   "scripts": {
     "sass": "sass sass:static/styles --quiet-deps --watch",
     "server": "node app.js",
-    "dev": "concurrently \"npm run sass\" \"npm run server\""
+    "dev": "concurrently \"npm run sass\" \"npm run server\"",
+    "oop": "node oop.js"
   },
   "repository": {
     "type": "git",
