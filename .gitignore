@@ -1,6 +1,7 @@
 node_modules/
 uploads/*
 uploads/
+static/styles/
 .env
 .env.prod
 .env.dev
