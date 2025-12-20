@@ -1,3 +1,6 @@
+import { add, sub } from './mymath.js';
+import User from './usersys.js';
+
 class Car {
     constructor(color) {
         if (color) this.color = color;
@@ -111,3 +114,33 @@ console.log(library.checkAvailable("Гаррі Поттер"));
 
 //library.books = [];
 console.log(library);
+
+
+class Quantum {
+    static num = 0;
+
+    constructor() {
+        Quantum.num += 1;
+        console.log('Created ' + Quantum.num + ' quantums');
+    }
+
+    static reset() {
+        Quantum.num = 0;
+    }
+}
+
+new Quantum()
+Quantum.num = 100
+new Quantum()
+Quantum.reset()
+new Quantum()
+new Quantum()
+new Quantum()
+
+
+let user1 = new User();
+console.log(user1.getId());
+let user2 = new User();
+console.log(user2.getId());
+
+console.log(User.userCount());
